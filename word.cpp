@@ -66,7 +66,6 @@ void word::Print_word()
     {
         cout<<Wordref[i];
     }
-    cout<<endl;
 }
 
 void word::Delete()
