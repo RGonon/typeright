@@ -38,3 +38,57 @@ void game::Printbank()
     *(this->bank+nbr_w-1).Print_word();
     cout<<endl;
 }
+
+void Getinput()
+{
+    char ch;
+    //index var used for the actual word
+    int i_word =0;
+    while(this->Current < this->nbr_w)
+    {
+        this.Printbank();
+        this->g_stats.ComputegameStats();
+        this->g_stats.Print();
+        system("stty raw");
+        while(1)
+        {
+            ch = getchar();
+            if(ch != 0)
+            {
+                
+                switch(ch)
+                {
+                    // backspace
+                    case 8:
+                        if(i_word ==0 && this->Current >0)
+                        {
+                            this->Current--;
+                            this->bank[this->Current].Delete();
+                            i_word = this->bank[this->Current].size();
+                        }
+                        else
+                        {
+                            this->bank[this->Current].Delete();
+                            i_word--;
+                        }
+                    case 32:
+                        this->Current++;
+                        indice = 0;
+
+                    default:
+                        this->bank[this->Current].Add(ch);
+                        this->g_stats.Addkeystrokes();
+                        //TODO 
+                        // add valid keystrokes
+                }
+                system("stty cooked");
+                system("clear");
+                break;
+            }
+        }
+        a+=ch;
+
+        ch = 0;
+        n++;
+    }
+

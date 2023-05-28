@@ -44,6 +44,8 @@ void gameStats::Addkeystrokes()
 
 void gameStats::Addvalidkey()
 {
+    int i = this->game->bank[this->game->Current].size()-1;
+    // add condition to know if we add a valid keystrokes or not
     _validkeystrokes++;
 }
 

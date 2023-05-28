@@ -32,6 +32,7 @@ class word
     void Print_word();
     void Delete();
     void Add(char c);
+    int Curr_size();
 };
 
 word::word(string ref)
@@ -97,6 +98,11 @@ void word::Add(char c)
         this->Wordstatus[l_curr] = -1;
         this->Lastkey = this->Wordstatus[l_curr];
     }
+}
+
+int word::Curr_size()
+{
+    return this->Wordcurr.size();
 }
 
 int main()
