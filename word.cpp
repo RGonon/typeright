@@ -40,7 +40,6 @@ void word::Print_word()
 
 void word::Delete()
 {
-    cout<<"----- DELETE----"<<endl;
     int lenght = this->Wordcurr.size();
     if(lenght > 0)
     {
@@ -83,4 +82,15 @@ int word::Curr_size()
 int word::Validkey(int i)
 {
     return (i<this->Wordref.size() && this->Wordref[i] == this->Wordcurr[i])?1:0;
+}
+int word::Checkword()
+{
+    int l_ref = this->Wordref.size();
+    int l_curr = this->Wordcurr.size();
+    if(l_curr != l_ref)
+        return 0;
+    int i =0;
+    while(i<l_curr && *(this->Wordstatus+i) == 1)
+        i++;
+    return i == l_curr;
 }

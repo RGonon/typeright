@@ -35,4 +35,5 @@ class word
     void Add(char c);
     int Curr_size();
     int Validkey(int i);
+    int Checkword();
 };

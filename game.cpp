@@ -48,6 +48,7 @@ void game::Getinput()
                             if(this->Current>0)
                             {
                                 this->Current--;
+                                this->Validwords--;
                                 this->bank[this->Current].Delete();
                                 i_word = this->bank[this->Current].Curr_size();
                             }
@@ -59,25 +60,26 @@ void game::Getinput()
                         }
                         else if(i_word >0)
                         {
-                            cout<<"COUCOU";
                             this->bank[this->Current].Delete();
                             i_word--;
                         }
                         break;
                     // space char
                     case 32:
+                        this->Validwords+=this->bank[this->Current].Checkword();
                         this->Current++;
                         i_word = 0;
                         break;
+                    // enter 
                     case 13:
                         stop = 1;
                         break;
-                    // letter case 
+                    // letter
                     default:
                         this->bank[this->Current].Add(ch);
                         this->g_stats.Addkeystrokes();
                         if(this->bank[this->Current].Validkey(i_word))
-                            this->g_stats.Addkeystrokes();
+                            this->g_stats.Addvalidkey();
                         i_word++;
                         break;
                 }
@@ -92,8 +94,6 @@ void game::Getinput()
 
 void game::Play()
 {
-    //gamestat start
-    //thread t(this->Getinput());
     thread t(bind(&game::Getinput,this));
     t.join();
     this->Getinput();
