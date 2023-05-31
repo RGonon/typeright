@@ -93,8 +93,9 @@ void game::Getinput()
 void game::Play()
 {
     //gamestat start
-//    thread t(this->Getinput());
-  //  t.join();
+    //thread t(this->Getinput());
+    thread t(bind(&game::Getinput,this));
+    t.join();
     this->Getinput();
     this->Printbank();
     this->g_stats.Print();

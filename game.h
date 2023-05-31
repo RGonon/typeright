@@ -4,6 +4,7 @@
 #include "gameStats.h"
 #endif
 #include <thread>
+#include <functional>
 
 using namespace std;
 
