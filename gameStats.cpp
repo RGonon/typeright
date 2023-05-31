@@ -1,28 +1,5 @@
-#include <iostream>
+#include "gameStats.h"
 
-#define GREEN   "\033[32m"      /* Green */
-
-class gameStats
-{
-    private:
-        int _keystrokes;
-        int _validkeystrokes;
-        Game game;
-    public: 
-        float Precision;
-        float Wpm;
-        float Raw;
-        time_t start;
-        gameStats();
-        void  set_game(Game game);
-        void Addkeystrokes();
-        void Addvalidkey();
-        void Computewpm();
-        void Computeprecision();
-        void Computeraw();
-        void ComputegameStats();
-        void Print();
-};
 gameStats::gameStats()
 {
     this->_keystrokes = 0;
@@ -32,10 +9,13 @@ gameStats::gameStats()
     this->Raw = 0.0f;
     time(&start);
 }
+
+/*
 void gameStats::set_game(Game game)
 {
     this->game = game;
 }
+*/
 
 void gameStats::Addkeystrokes()
 {
@@ -44,17 +24,15 @@ void gameStats::Addkeystrokes()
 
 void gameStats::Addvalidkey()
 {
-    int i = this->game->bank[this->game->Current].size()-1;
-    // add condition to know if we add a valid keystrokes or not
     _validkeystrokes++;
 }
 
-void gameStats::Computewpm()
+void gameStats::Computewpm(int v_word)
 {
     time_t now;
     time(&now);
     float diff_time = (float) difftime(now,this->start);
-    this->Wpm =(diff_time>0)? this->game->Validword / diff_time:0;
+    this->Wpm =(diff_time>0)? v_word / diff_time:0;
 }
 
 void gameStats::Computeprecision()
@@ -62,20 +40,20 @@ void gameStats::Computeprecision()
     this->Precision = (this->_validkeystrokes / this->_keystrokes)*100;
 }
 
-void gameStats::Computeraw()
+void gameStats::Computeraw(int current)
 {
     time_t now;
     time(&now);
     float diff_time = (float) difftime(now,this->start);
-    this->Raw =(diff_time>0)? this->game->Current / diff_time:0;
+    this->Raw =(diff_time>0)? current / diff_time:0;
 }
 
-void gameStats::ComputegameStats()
+void gameStats::ComputegameStats(int v_word, int current)
 {
     //If does not work use thread
-    this->Computewpm();
+    this->Computewpm(v_word);
     this->Computeprecision();
-    this->Computeraw();
+    this->Computeraw(current);
 }
 
 void gameStats::Print()
