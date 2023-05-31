@@ -1,11 +1,15 @@
 #include "word.h"
 
-word::word(string ref)
+word::word()
+{
+    this->Wordcurr = "";
+    this->Lastkey = 0;
+}
+
+void word::set_ref(string ref)
 {
     this->Wordref = ref;
-    this->Wordcurr = "";
     this->Wordstatus =(int*) calloc(ref.size(),sizeof(int));
-    this->Lastkey = 0;
 }
 
 void word::Print_word()
@@ -19,23 +23,24 @@ void word::Print_word()
             case 1:
                 cout<<GREEN<<Wordcurr[i];
                 continue;
-            case -1: 
-                cout<<RED<<Wordcurr[i];
+            case 0: 
+                cout<<WHITE<<Wordref[i];
                 continue;
             default:
-                cout<<WHITE<<Wordcurr[i];
+                cout<<RED<<Wordcurr[i];
                 continue;
         }
     }
     cout<<RESET;
     for(int i = l_curr; i < l_ref;i++)
     {
-        cout<<Wordref[i];
+        cout<<WHITE<<Wordref[i];
     }
 }
 
 void word::Delete()
 {
+    cout<<"----- DELETE----"<<endl;
     int lenght = this->Wordcurr.size();
     if(lenght > 0)
     {
@@ -43,7 +48,12 @@ void word::Delete()
         this->Wordcurr = temp;
         this->Wordstatus[lenght-1] = 0;
     }
-    this->Lastkey = (lenght>1)? this->Wordstatus[lenght-2]:0;
+    else
+    {
+        this->Wordcurr = "";
+        this->Wordstatus[0] = 0;
+    }
+    this->Lastkey = 0;
 }
 
 void word::Add(char c)

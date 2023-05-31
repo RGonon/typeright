@@ -28,12 +28,11 @@ class word
         int* Wordstatus;
         int Lastkey;
     public: 
-    word(string ref);
+    word();
+    void set_ref(string ref);
     void Print_word();
     void Delete();
     void Add(char c);
     int Curr_size();
     int Validkey(int i);
 };
-
-

@@ -37,7 +37,7 @@ void gameStats::Computewpm(int v_word)
 
 void gameStats::Computeprecision()
 {
-    this->Precision = (this->_validkeystrokes / this->_keystrokes)*100;
+    this->Precision = (this->_keystrokes>0)?(this->_validkeystrokes / this->_keystrokes)*100:0;
 }
 
 void gameStats::Computeraw(int current)
@@ -58,8 +58,9 @@ void gameStats::ComputegameStats(int v_word, int current)
 
 void gameStats::Print()
 {
+    cout<<endl;
     cout<<GREEN<<"Game statistics:\n";
-    cout<<GREEN<<"---------------------";
+    cout<<GREEN<<"---------------------\n";
     cout<<GREEN<<"| WPM: "<<this->Wpm<<endl;
     cout<<GREEN<<"| Precision: "<<this->Precision<<endl;
     cout<<GREEN<<"| Raw: "<<this->Raw<<endl;
