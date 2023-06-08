@@ -6,8 +6,8 @@ using namespace std;
 class gameStats
 {
     private:
-        int _keystrokes;
-        int _validkeystrokes;
+        float _keystrokes;
+        float _validkeystrokes;
 //        Game game;
     public: 
         float Precision;

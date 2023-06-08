@@ -2,8 +2,8 @@
 
 gameStats::gameStats()
 {
-    this->_keystrokes = 0;
-    this->_validkeystrokes = 0;
+    this->_keystrokes = 0.0f;
+    this->_validkeystrokes = 0.0f;
     this->Precision =0.0f;
     this->Wpm = 0.0f;
     this->Raw = 0.0f;
@@ -30,7 +30,7 @@ void gameStats::Computewpm(int v_word)
 
 void gameStats::Computeprecision()
 {
-    this->Precision = (this->_keystrokes>0)?(float)(this->_validkeystrokes / this->_keystrokes)*100:0;
+    this->Precision = (this->_keystrokes>0)?(float)(this->_validkeystrokes / this->_keystrokes)*100.0f:0;
 }
 
 void gameStats::Computeraw(int current)
