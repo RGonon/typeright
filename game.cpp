@@ -4,7 +4,6 @@ game::game()
 {
     this->Current = 0;
     this->Validwords = 0;
-//    this->g_stats.set_game(this);
 }
 void game::set_bank(word* b, int n)
 {
@@ -13,10 +12,12 @@ void game::set_bank(word* b, int n)
 }
 void game::Printbank()
 {
+    //we want to have only 10 words on each line
+    
     for(int i =0; i<this->nbr_w-1;i++)
     {
         (*(this->bank+i)).Print_word();
-        cout<<" ";
+        cout<<(((i+1)%10==0)?'\n':' ');
     }
     (*(this->bank+nbr_w-1)).Print_word();
     cout<<endl;
@@ -92,6 +93,19 @@ void game::Getinput()
     }
 }
 
+void game::word_text(word*& w, int size)
+{
+    string path = "word.txt";
+    string s;
+    int r;
+    for(int i =0;i<size;i++)
+    {
+        r = rand()%10000;
+        s = get_line(path,r);
+        w[i].set_ref(s);
+    }
+}
+
 void game::Play()
 {
     thread t(bind(&game::Getinput,this));
@@ -103,13 +117,10 @@ void game::Play()
 
 int main()
 {
-    word w[2];
-    for(int i =0; i<2;i++)
-    {
-        w[i].set_ref("coucou");
-    }
+    word* w =(word*) malloc(sizeof(word)*12);
     game g;
-    g.set_bank(w,2);
+    g.word_text(w,12);
+    g.set_bank(w,12);
     g.Play();
 
     return 0;

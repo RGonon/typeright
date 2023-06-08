@@ -57,17 +57,19 @@ void word::Delete()
 
 void word::Add(char c)
 {
-    this->Wordcurr+=c;
-    int l_curr = this->Wordcurr.size();
+    int l_curr = this->Wordcurr.size()+1;
 
     if(l_curr<= this->Wordref.size())
     {
+        this->Wordcurr+=c;
         this->Wordstatus[l_curr-1] = 
             (this->Wordcurr[l_curr-1] == this->Wordref[l_curr-1])?1:-1;
         this->Lastkey = this->Wordstatus[l_curr-1];
     }
-    else
+    else if (l_curr<= this->Wordref.size()+10)
     {
+        this->Wordcurr+=c;
+        cout<<l_curr+1<<endl;
         this->Wordstatus =(int*) realloc(this->Wordstatus, l_curr+1);
         this->Wordstatus[l_curr] = -1;
         this->Lastkey = this->Wordstatus[l_curr];
