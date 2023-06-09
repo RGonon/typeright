@@ -25,7 +25,7 @@ void gameStats::Computewpm(int v_word)
     time_t now;
     time(&now);
     float diff_time = (float) difftime(now,this->start);
-    this->Wpm =(diff_time>0)? v_word / diff_time*60:0;
+    this->Wpm =(diff_time>0)? (v_word / diff_time)*90.0f:0;
 }
 
 void gameStats::Computeprecision()
@@ -38,7 +38,7 @@ void gameStats::Computeraw(int current)
     time_t now;
     time(&now);
     float diff_time = (float) difftime(now,this->start);
-    this->Raw =(diff_time>0)? current / diff_time*60:0;
+    this->Raw =(diff_time>0)? current / diff_time*90.0f:0;
 }
 
 void gameStats::ComputegameStats(int v_word, int current)
