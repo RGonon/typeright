@@ -7,4 +7,4 @@
 using namespace std;
 
 string get_line(string path,int line);
-
+int display();

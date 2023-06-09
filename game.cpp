@@ -13,7 +13,6 @@ void game::set_bank(word* b, int n)
 void game::Printbank()
 {
     //we want to have only 10 words on each line
-    
     for(int i =0; i<this->nbr_w-1;i++)
     {
         (*(this->bank+i)).Print_word();
@@ -113,24 +112,13 @@ void game::Play()
 {
     thread t(bind(&game::Getinput,this));
     t.join();
-    //this->Getinput();
     this->Printbank();
     this->g_stats.Print();
 }
 
 int main()
 {
-    cout<<"Welcome to typeright game !\n";
-    int n_word;
-    cout<<"How many word do you want to type ? ";
-    cin>>n_word;
-    cout<<"Alright let's go for "<<n_word<<" words\n";
-    cout<<"Here are the rule: \n";
-    cout<<"No break line it will exit the program\n";
-    cout<<"Tap as fast as you can\n";
-    cout<<"When you are ready hit Enter to go\n";
-    char a = getchar();
-    a = getchar();
+    int n_word = display();
     word* w =(word*) malloc(sizeof(word)*n_word);
     game g;
     g.word_text(w,n_word);

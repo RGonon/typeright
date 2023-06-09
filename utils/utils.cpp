@@ -14,3 +14,19 @@ string get_line(string path, int line)
     getline(s,l,'\n');
     return l;
 }   
+
+int display()
+{
+    cout<<"Welcome to typeright game !\n";
+    int n_word;
+    cout<<"How many word do you want to type ? ";
+    cin>>n_word;
+    cout<<"Alright let's go for "<<n_word<<" words\n";
+    cout<<"Here are the rule: \n";
+    cout<<"No break line it will exit the program\n";
+    cout<<"Tap as fast as you can\n";
+    cout<<"When you are ready hit Enter to go\n";
+    char a = getchar();
+    a = getchar();
+    return n_word;
+}
