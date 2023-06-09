@@ -9158,7 +9158,6 @@ train
 trained
 trainer
 trainers
-training
 trains
 tramadol
 trance
@@ -9170,6 +9169,7 @@ transcript
 transcription
 transcripts
 transexual
+training
 transexuales
 transfer
 transferred

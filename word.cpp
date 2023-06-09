@@ -80,6 +80,10 @@ int word::Curr_size()
 {
     return this->Wordcurr.size();
 }
+int word::Ref_size()
+{
+    return this->Wordref.size();
+}
 
 int word::Validkey(int i)
 {

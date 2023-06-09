@@ -35,7 +35,7 @@ void game::Getinput()
         this->g_stats.ComputegameStats(this->Validwords, this->Current);
         this->g_stats.Print();
         system("stty raw");
-        while(1)
+        while(stop!=1)
         {
             ch = getchar();
             if(ch != '\0')
@@ -82,6 +82,9 @@ void game::Getinput()
                         if(this->bank[this->Current].Validkey(i_word))
                             this->g_stats.Addvalidkey();
                         i_word++;
+                        if(this->Current == this->nbr_w-1 &&
+                            this->bank[this->Current].Ref_size() == i_word)
+                            stop = 1;
                         break;
                 }
                 break;
@@ -110,18 +113,28 @@ void game::Play()
 {
     thread t(bind(&game::Getinput,this));
     t.join();
-    this->Getinput();
+    //this->Getinput();
     this->Printbank();
     this->g_stats.Print();
 }
 
 int main()
 {
-    word* w =(word*) malloc(sizeof(word)*12);
+    cout<<"Welcome to typeright game !\n";
+    int n_word;
+    cout<<"How many word do you want to type ? ";
+    cin>>n_word;
+    cout<<"Alright let's go for "<<n_word<<" words\n";
+    cout<<"Here are the rule: \n";
+    cout<<"No break line it will exit the program\n";
+    cout<<"Tap as fast as you can\n";
+    cout<<"When you are ready hit Enter to go\n";
+    char a = getchar();
+    a = getchar();
+    word* w =(word*) malloc(sizeof(word)*n_word);
     game g;
-    g.word_text(w,12);
-    g.set_bank(w,12);
+    g.word_text(w,n_word);
+    g.set_bank(w,n_word);
     g.Play();
-
     return 0;
 }

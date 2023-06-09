@@ -34,6 +34,7 @@ class word
     void Delete();
     void Add(char c);
     int Curr_size();
+    int Ref_size();
     int Validkey(int i);
     int Checkword();
 };
