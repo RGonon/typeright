@@ -100,6 +100,7 @@ void game::word_text(word*& w, int size)
     string path = "word.txt";
     string s;
     int r;
+    srand(time(0));
     for(int i =0;i<size;i++)
     {
         r = rand()%10000;
@@ -114,15 +115,4 @@ void game::Play()
     t.join();
     this->Printbank();
     this->g_stats.Print();
-}
-
-int main()
-{
-    int n_word = display();
-    word* w =(word*) malloc(sizeof(word)*n_word);
-    game g;
-    g.word_text(w,n_word);
-    g.set_bank(w,n_word);
-    g.Play();
-    return 0;
 }

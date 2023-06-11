@@ -12,6 +12,7 @@ string get_line(string path, int line)
         getline(s,l,'\n');
     }
     getline(s,l,'\n');
+    s.close();
     return l;
 }   
 
